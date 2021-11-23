@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Swansea Zoo - @yield('title') </title>
+    <title>Fake Twitter - @yield('title') </title>
 </head>
 <body>
-    <h1>Swansea Zoo - @yield('title')</h1>
+    <h1>Fake Twitter - @yield('title')</h1>
 
     <div>
         @yield('content')
