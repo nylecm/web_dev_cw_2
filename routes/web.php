@@ -18,7 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
+// Check order.
+Route::get('/users', [UserController::class, 'index'])
+       ->name('users.index');
+
+Route::get('/users/create', [UserController::class, 'create'])
+       ->name('users.create');
+
+Route::post('/users', [UserController::class, 'store'])
+       ->name('animals.store');
+
+Route::get('/users/show', [UserController::class, 'show'])
+       ->name('users.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
