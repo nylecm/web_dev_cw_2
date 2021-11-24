@@ -28,7 +28,7 @@ Route::get('/users/create', [UserController::class, 'create'])
 Route::post('/users', [UserController::class, 'store'])
        ->name('animals.store');
 
-Route::get('/users/show', [UserController::class, 'show'])
+Route::get('/users/{id}', [UserController::class, 'show'])
        ->name('users.show');
 
 Route::get('/dashboard', function () {
