@@ -10,5 +10,4 @@
     <ol>
         <li><a href="{{ route('users.index')}}">Users Index</a></li>
     </ol>
-
 @endsection
