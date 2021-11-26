@@ -13,12 +13,12 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $datePosted = $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null);
+        $datePosted = $this->faker->dateTimeBetween('-1 years', 'now', null);
         return [
-            'title' => $this->faker->realText($maxNbChars = 30, $indexSize = 2),
-            'text_content' => $this->faker->realText($maxNbChars = 30, $indexSize = 2),
+            'title' => $this->faker->realText(30),
+            'text_content' => $this->faker->realText( 30),
             'date_posted' => $datePosted,
-            'date_edited' => $this->faker->dateTimeBetween($startDate = $datePosted, $endDate = 'now', $timezone = null),
+            'date_edited' => $this->faker->dateTimeBetween($datePosted, 'now', null),
         ];
     }
 }

@@ -18,8 +18,8 @@ class UserFactory extends Factory
             'user_name' => $this->faker->unique()->userName(),
             'full_name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'date_of_birth' => $this->faker->dateTimeBetween($startDate = '-100 years', 
-                                             $endDate = '-13 years', $timezone = null),
+            'date_of_birth' => $this->faker->dateTimeBetween('-100 years',
+                                                     '-13 years', null),
             'email_verified_at' => now(),
             'password' => $this->faker->password(), // password
             'remember_token' => Str::random(10),
