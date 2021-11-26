@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('user_name')->unique();
             $table->string('full_name');
             $table->string('email')->unique();
-            $table->dateTime('date_of_birth');
+            $table->dateTime('date_of_birth')->nullable(); // todo make not nullable
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
