@@ -4,6 +4,6 @@
 
 @section('content')
    test
-   <a href="{{ route('users.index')}}">Cancel</a>
+   <a href="{{route('users.index')}}">Cancel</a>
 
 @endsection

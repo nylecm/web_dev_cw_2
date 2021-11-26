@@ -9,6 +9,6 @@
         <li>{{$user->full_name}}</li>
         <li>{{$user->email}}</li>
         <li>{{$user->date_of_birth}}</li>
-        <a href="{{ route('users.index')}}">Cancel</a>
+        <a href="{{route('users.index')}}">Cancel</a>
     </ul>
 @endsection
