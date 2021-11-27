@@ -10,8 +10,17 @@
         <li>{{ $post->date_posted}}</li>
         <li>{{ $post->date_edited}}</li>
         <li>{{ $author->user_name ?? 'n/a'}}</li>
-        <li>{{ $likes ?? 'n/a'}}</li>
-        <li>{{ $dislikes ?? 'n/a'}}</li>
+        @if ( sizeof($likes) === 0)
+            <li>0 likes.
+        @else
+            <li>{{sizeof($likes)}} like(s).
+        @endif
+
+        @if ( sizeof($dislikes) === 0)
+            0 dislikes.</li>
+        @else
+            {{sizeof($dislikes)}} dislike(s).</li>
+        @endif
 
         {{--@foreach ($posts as $post)
             <li><a href="{{route('$posts.show', ['id' => $post->id ])}}" >{{'@'}}{{$post->$title}}</a></li>
