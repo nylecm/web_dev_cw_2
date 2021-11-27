@@ -13,17 +13,22 @@
         @if ( sizeof($likes) === 0)
             <li>0 likes.
         @else
-            <li>{{sizeof($likes)}} like(s).
+            @if ( sizeof($likes) === 1)
+                <li>{{ sizeof($likes)}} like,
+            @else
+                <li>{{ sizeof($likes)}} likes,
+            @endif
         @endif
 
-        @if ( sizeof($dislikes) === 0)
+
+                @if ( sizeof($dislikes) === 0)
             0 dislikes.</li>
         @else
-            {{sizeof($dislikes)}} dislike(s).</li>
+            @if ( sizeof($dislikes) === 1)
+                {{ sizeof($dislikes)}} dislike.</li>
+            @else
+                {{ sizeof($dislikes)}} dislikes.</li>
+            @endif
         @endif
-
-        {{--@foreach ($posts as $post)
-            <li><a href="{{route('$posts.show', ['id' => $post->id ])}}" >{{'@'}}{{$post->$title}}</a></li>
-        @endforeach--}}
     </ul>
 @endsection
