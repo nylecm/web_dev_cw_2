@@ -10,7 +10,7 @@
         <p>Title:<input type="text" name="title"></p>
         <p>Title:<input type="text" name="text_content"></p>
         <input type="submit" value="Submit">
-        <p>{{$user->user_name?? 'err'}}</p>
+{{--        <p>{{$user->user_name?? 'err'}}</p>--}}
 
 
 
