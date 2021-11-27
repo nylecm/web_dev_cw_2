@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<img src="{{ URL('https://www.tripsavvy.com/thmb/1aXkdyIDI0OkKVHVC8fuvYHZDhY=/2125x1412/filters:fill(auto,1)/Banff-National-Park_janeteasche_Getty-Images-56a97eeb5f9b58b7d0fbf876.jpg')}}" alt="Quacker Logo" height="200" width="400">
+<img src="{{ asset('/img/quacker-logo-1.png') }}" alt="Quacker Logo" height="200">
 
 <h1>Quacker - @yield('title')</h1>
 
