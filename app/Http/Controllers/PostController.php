@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -26,8 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        // todo Get the logged in user's username.
-        return view('posts.create');
+        // todo Get the logged in user's id.
+        $user = auth()->user();
+        return view('posts.create', ['user' => $user]);
     }
 
     /**
