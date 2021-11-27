@@ -26,7 +26,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        // todo Get the logged in user's username.
+        return view('posts.create');
     }
 
     /**
