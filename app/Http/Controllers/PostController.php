@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class PostController extends Controller
 {
@@ -40,7 +41,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string'] //add more...
+        ]);
+
+        $post = Post::create([
+            'title' => $request->title,
+            'text_content' => $request->text_content,
+            'date_posted' => new DateTime('2021-11-23T22:22:22.12345Z'), // todo remove...
+            'date_edited' => new DateTime('2021-11-23T22:22:22.12345Z'),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        session()->flash('message', 'Post was created' . $post);
+        return redirect()->route('posts.index');
     }
 
     /**
