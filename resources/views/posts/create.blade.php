@@ -7,15 +7,25 @@
 
     <form method="POST" action="{{ route('posts.store') }}">
         @csrf
-        <p>Title:<input type="text" name="title"></p>
-        <p>Title:<input type="text" name="text_content"></p>
+        <p>Title: <input type="text" name="title"></p>
+        <label>
+            <textarea name="text_content" style="width:250px;height:150px;resize:none;"></textarea>
+        </label>
+        <br>
         <input type="submit" value="Submit">
-{{--        <p>{{$user->user_name?? 'err'}}</p>--}}
-
-
-
-
-
     </form>
 
+    <div id="app">
+        @{{ message }}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        })
+    </script>
 @endsection
+
