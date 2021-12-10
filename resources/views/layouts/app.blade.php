@@ -26,15 +26,15 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Dashboard
+                    <a class="nav-link active" href="{{ route('dashboard') }}">Dashboard
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Posts</a>
+                    <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
+                    <a class="nav-link" href="{{ }}">Settings</a>
                 </li>
                 {{--todo admin--}}
                 <li class="nav-item">
@@ -42,6 +42,17 @@
                 </li>
                     @if (Route::has('login'))
                             @auth
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Hello {{ auth()->user()->user_name }}</a>
+                                    <p></p>
+                                </li>
+                        <li class="nav-item">
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit" class="btn btn-primary" >Log Out</button>
+
+                            </form>
+                        </li>
 {{--                                <li class="nav-item">--}}
 {{--                                    <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard 2</a>--}}
 {{--                                </li>--}}
