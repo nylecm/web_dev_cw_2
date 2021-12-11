@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>

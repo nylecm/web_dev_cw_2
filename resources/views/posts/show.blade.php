@@ -14,7 +14,7 @@
 
     <div id="commentHandle">
         <ul>
-            <li v-for="comment in comments">@{{ comment }}</li>
+            <li v-for="comment in comments">@{{ comment.text_content }}</li>
         </ul>
         <input type="text" v-model="newComment">
         <button @click="addComment">Add Name</button>
@@ -29,10 +29,19 @@
                 comments: ["Dummy"]
             },
             methods: {
-                addComment(){
+                addComment() {
                     this.comments.push(this.newComment);
                     this.newComment = "";
                 }
+            },
+            mounted() {
+                axios.get("{{route('api.comments.index')}}")
+                    .then(response => {
+                        this.comments = response.data;
+                    })
+                    .catch(response => {
+                        console.log(response);
+                    })
             }
         });
     </script>
