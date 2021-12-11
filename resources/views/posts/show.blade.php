@@ -12,13 +12,29 @@
 
     <h5>Comments:</h5>
 
+    <div id="commentHandle">
+        <ul>
+            <li v-for="comment in comments">@{{ comment }}</li>
+        </ul>
+        <input type="text" v-model="newComment">
+        <button @click="addComment">Add Name</button>
+
+        @{{ message }}
+    </div>
+
     <script>
         var app = new Vue({
-            el: '#app',
+            el: '#commentHandle',
             data: {
-                message: 'Type a Comment is coming!'
+                comments: ["Dummy"]
+            },
+            methods: {
+                addComment(){
+                    this.comments.push(this.newComment);
+                    this.newComment = "";
+                }
             }
-        })
+        });
     </script>
 
     @foreach ($comments as $comment)
@@ -26,8 +42,5 @@
         <p>{{ $comment->text_content }}</p>
     @endforeach
 
-    <div id="app">
-        @{{ message }}
-    </div>
 
 @endsection
