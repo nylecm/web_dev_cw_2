@@ -23,3 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('comments', [CommentController::class, 'apiIndex'])
     ->name('api.comments.index');
 
+Route::get('comments/{id}', [CommentController::class, 'apiCommentsForPost'])
+    ->name('api.comments.index.forpost');
+
+

@@ -35,7 +35,7 @@
                 }
             },
             mounted() {
-                axios.get("{{route('api.comments.index')}}")
+                axios.get("{{ route('api.comments.index.forpost', ['id' => $post->id])}}")
                     .then(response => {
                         this.comments = response.data;
                     })
@@ -46,10 +46,10 @@
         });
     </script>
 
-    @foreach ($comments as $comment)
-        <p>Posted by: {{ $comment->text_content }}</p>
-        <p>{{ $comment->text_content }}</p>
-    @endforeach
+{{--    @foreach ($comments as $comment)--}}
+{{--        <p>Posted by: {{ $comment->text_content }}</p>--}}
+{{--        <p>{{ $comment->user_id }}</p>--}}
+{{--    @endforeach--}}
 
 
 @endsection

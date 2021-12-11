@@ -85,7 +85,11 @@ class CommentController extends Controller
 
     public function apiIndex()
     {
-        $comments = Comment::all();
-        return $comments;
+        return Comment::all();
+    }
+
+    public function apiCommentsForPost($id)
+    {
+        return Comment::all()->where('post_id', $id);
     }
 }
