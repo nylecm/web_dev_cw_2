@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->hasMany(Reaction::class);
     }
+
+    public function isTheOwner($user)
+    {
+        return $this->user_id === $user->id;
+    }
 }

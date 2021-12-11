@@ -34,7 +34,7 @@
                     <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ }}">Settings</a>
+                    <a class="nav-link" href="#">Settings</a>
                 </li>
                 {{--todo admin--}}
                 <li class="nav-item">

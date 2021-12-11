@@ -7,10 +7,12 @@
     <p>These are the posts on Fake Twitter:</p>
 
 
+
     @foreach ($posts as $post)
-        <p><a href="{{ route('posts.show', ['id' => $post->id ])}}">{{ $post->title}}</a></p>
+        <h4><a href="{{ route('posts.show', ['id' => $post->id ])}}">{{ $post->title}}</a></h4>
 
         <p>{{ $post->text_content}}</p>
+
         <form id={{"grp" . $post->id}}>
             <p>
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"
@@ -22,6 +24,7 @@
             </div>
             </p>
         </form>
+
         {{--            <form id='group2'>--}}
         {{--                <li><a href="{{ route('posts.show', ['id' => $post->id ])}}">{{'@'}}{{ $post->title}}</a></li>--}}
         {{--                <li>{{ $post->text_content}}</li>--}}
