@@ -101,7 +101,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validate request
+        $request->validate([
+            'title' => 'required|max:30', //todo add more...
+            'text_content' => 'required|max:140' //todo add more...
+        ]);
+
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->text_content = $request->text_content;
+        $post->save();
+//        $post->update(['title' => $request->title, 'text_content' => $request->text_content]);
+
+        return redirect()->route('posts.index');
     }
 
     /**

@@ -46,6 +46,11 @@ Route::get('/posts/{id}', [PostController::class, 'show'])
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
     ->name('posts.edit');
 
+Route::post('/posts/{id}', [PostController::class, 'update'])
+    ->name('posts.update');
+
+// todo delete post here
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
