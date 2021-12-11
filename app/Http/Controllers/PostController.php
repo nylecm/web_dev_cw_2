@@ -71,7 +71,7 @@ class PostController extends Controller
         $author = DB::table('users')->where('id', $post->user_id)->first();
         $likes = DB::table('reactions')->where('post_id', $id)->where('type', 'like')->get();
         $dislikes = DB::table('reactions')->where('post_id', $id)->where('type', 'dislike')->get();
-        $comments = DB::table('comments')->where('post_id', $id)->get();
+        $comments = $post->comments;
         return view('posts.show', ['post' => $post, 'author' => $author, 'likes' => $likes, 'dislikes' => $dislikes, 'comments' => $comments]);
     }
 

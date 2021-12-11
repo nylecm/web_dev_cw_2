@@ -12,9 +12,22 @@
 
     <h5>Comments:</h5>
 
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Type a Comment is coming!'
+            }
+        })
+    </script>
+
     @foreach ($comments as $comment)
-        <p>hello</p>
+        <p>Posted by: {{ $comment->text_content }}</p>
+        <p>{{ $comment->text_content }}</p>
     @endforeach
 
-    </ul>
+    <div id="app">
+        @{{ message }}
+    </div>
+
 @endsection
