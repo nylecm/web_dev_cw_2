@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\EncryptCookies;
 use App\Models\Comment;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -95,28 +96,19 @@ class CommentController extends Controller
         return Comment::all()->where('post_id', $id);
     }
 
-    public function apiStore(Request $request, $post_id) {
-        // todo add validation
-        $request->validate([
-            'text_content' => 'required|max:140' //todo add more...
-        ]);
+    public function apiStore(Request $request) {
+//        $request->validate([
+//            'text_content' => 'required|max:140'
+//        ]); fixme uncomment
 
-//        $comment = Comment::create([
-//            'title' => $request->title,
-//            'text_content' => $request->text_content,
-//            'date_posted' => new DateTime('2021-11-23T22:22:22.12345Z'), // todo remove...
-//            'date_edited' => new DateTime('2021-11-23T22:22:22.12345Z'),
-//            'user_id' => Auth::user()->id,
-//        ]);
-
-        //session()->flash('message', 'ENTRY');
         $comment = new Comment();
-        $comment->text_content = $request->text_content;
+        $comment->text_content = $request['text_content'];
         $comment->date_posted = new DateTime('2021-11-23T22:22:22.12345Z'); // todo remove...
         $comment->date_edited = new DateTime('2021-11-23T22:22:22.12345Z'); // todo remove...
-        $comment->user_id = Auth::user()->id;
-        $comment->post_id = $post_id;
+        $comment->user_id = 3; //fixme !! Auth::user()->id;
+        $comment->post_id = $request['post_id'];
         $comment->save();
         session()->flash('message', 'Comment was created' . $comment);
+        return $comment;
     }
 }

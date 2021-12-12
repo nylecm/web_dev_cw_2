@@ -16,7 +16,7 @@
         <ul>
             <li v-for="comment in comments">@{{ comment.text_content }}</li>
         </ul>
-        <input type="text" id="text_content" v-model="newComment">
+        <input type="text" id="input" v-model="newComment">
         <button @click="createComment">Post Comment</button>
     </div>
 
@@ -26,18 +26,19 @@
             data: {
                 comments: [],
                 newComment: '',
+                postId: {{ $post->id}},
             },
             methods: {
-                createComment() {
-                    axios.post("{{ route('api.comments.store', ['post_id' => $post->id])}}", {
-                        data: this.newComment
+                createComment: function () {
+                    axios.post("{{ route('api.comments.store')}}", {
+                        text_content: this.newComment,
+                        post_id: this.postId
                     })
                         .then(response => {
                             this.comments.push(response.data);
                             this.newComment = '';
                         })
                         .catch(response => {
-                            console.log(data);
                             console.log(response);
                         })
                 }
