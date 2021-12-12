@@ -27,12 +27,14 @@
                 comments: [],
                 newComment: '',
                 postId: {{ $post->id}},
+                userId: {{auth()->user()->id}}
             },
             methods: {
                 createComment: function () {
                     axios.post("{{ route('api.comments.store')}}", {
                         text_content: this.newComment,
-                        post_id: this.postId
+                        post_id: this.postId,
+                        user_id: this.userId
                     })
                         .then(response => {
                             this.comments.push(response.data);

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\EncryptCookies;
 use App\Models\Comment;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use DateTime;
 
 class CommentController extends Controller
 {
@@ -105,7 +105,7 @@ class CommentController extends Controller
         $comment->text_content = $request['text_content'];
         $comment->date_posted = new DateTime('2021-11-23T22:22:22.12345Z'); // todo remove...
         $comment->date_edited = new DateTime('2021-11-23T22:22:22.12345Z'); // todo remove...
-        $comment->user_id = 3; //fixme !! Auth::user()->id;
+        $comment->user_id = $request['user_id'];
         $comment->post_id = $request['post_id'];
         $comment->save();
         session()->flash('message', 'Comment was created' . $comment);

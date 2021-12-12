@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +71,7 @@ class PostController extends Controller
         $likes = DB::table('reactions')->where('post_id', $id)->where('type', 'like')->get();
         $dislikes = DB::table('reactions')->where('post_id', $id)->where('type', 'dislike')->get();
         $comments = $post->comments;
+        $cur_usr = Auth::user()->id;
         return view('posts.show', ['post' => $post, 'author' => $author, 'likes' => $likes, 'dislikes' => $dislikes, 'comments' => $comments]);
     }
 
