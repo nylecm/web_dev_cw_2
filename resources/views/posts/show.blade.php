@@ -12,26 +12,34 @@
 
     <h5>Comments:</h5>
 
-    <div id="commentHandle">
+    <div id="root">
         <ul>
             <li v-for="comment in comments">@{{ comment.text_content }}</li>
         </ul>
-        <input type="text" v-model="newComment">
-        <button @click="addComment">Add Name</button>
-
-        @{{ message }}
+        <input type="text" id="text_content" v-model="newComment">
+        <button @click="createComment">Post Comment</button>
     </div>
 
     <script>
         var app = new Vue({
-            el: '#commentHandle',
+            el: "#root",
             data: {
-                comments: ["Dummy"]
+                comments: [],
+                newComment: '',
             },
             methods: {
-                addComment() {
-                    this.comments.push(this.newComment);
-                    this.newComment = "";
+                createComment() {
+                    axios.post("{{ route('api.comments.store', ['post_id' => $post->id])}}", {
+                        data: this.newComment
+                    })
+                        .then(response => {
+                            this.comments.push(response.data);
+                            this.newComment = '';
+                        })
+                        .catch(response => {
+                            console.log(data);
+                            console.log(response);
+                        })
                 }
             },
             mounted() {
@@ -46,10 +54,28 @@
         });
     </script>
 
-{{--    @foreach ($comments as $comment)--}}
-{{--        <p>Posted by: {{ $comment->text_content }}</p>--}}
-{{--        <p>{{ $comment->user_id }}</p>--}}
-{{--    @endforeach--}}
+    {{--    <script>--}}
+    {{--        var app = new Vue({--}}
+    {{--            el: '#commentHandle',--}}
+    {{--            data: {--}}
+    {{--                comments: ["Dummy"]--}}
+    {{--            },--}}
+    {{--            methods: {--}}
+    {{--                createComment() {--}}
+    {{--                    this.comments.push(this.newComment);--}}
+    {{--                    this.newComment = "";--}}
+    {{--                },--}}
+
+    {{--                }--}}
+    {{--            },--}}
+
+    {{--        });--}}
+    {{--    </script>--}}
+
+    {{--    @foreach ($comments as $comment)--}}
+    {{--        <p>Posted by: {{ $comment->text_content }}</p>--}}
+    {{--        <p>{{ $comment->user_id }}</p>--}}
+    {{--    @endforeach--}}
 
 
 @endsection
