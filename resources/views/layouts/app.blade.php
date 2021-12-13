@@ -41,34 +41,34 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admin</a>
                 </li>
-                    @if (Route::has('login'))
-                            @auth
-                                <li class="nav-item">
-                                    <a class="nav-link" href="">Hello {{ auth()->user()->user_name }}</a>
-                                    <p></p>
-                                </li>
+                @if (Route::has('login'))
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Hello {{ auth()->user()->user_name }}</a>
+                            <p></p>
+                        </li>
                         <li class="nav-item">
                             <form method="POST" action="/logout">
                                 @csrf
-                                <button type="submit" class="btn btn-primary" >Log Out</button>
+                                <button type="submit" class="btn btn-primary">Log Out</button>
 
                             </form>
                         </li>
-{{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard 2</a>--}}
-{{--                                </li>--}}
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Log In</a>
-                                </li>
+                        {{--                                <li class="nav-item">--}}
+                        {{--                                    <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard 2</a>--}}
+                        {{--                                </li>--}}
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Log In</a>
+                        </li>
 
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">Register</a>
-                                    </li>
-                                @endif
-                            @endauth
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
                         @endif
+                    @endauth
+                @endif
             </ul>
         </div>
 
