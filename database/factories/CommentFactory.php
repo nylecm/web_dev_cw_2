@@ -14,7 +14,6 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
-        $datePosted = $this->faker->dateTimeBetween('-1 years', 'now', null);
         return [
             'text_content' => $this->faker->realText( 140),
             'user_id' => $this->faker->numberBetween(1,DB::table('users')->count()),

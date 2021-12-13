@@ -13,7 +13,6 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $datePosted = $this->faker->dateTimeBetween('-1 years', 'now', null);
         return [
             'title' => $this->faker->realText(30),
             'text_content' => $this->faker->realText( 140),
