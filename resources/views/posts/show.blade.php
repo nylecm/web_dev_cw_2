@@ -27,7 +27,7 @@
                 comments: [],
                 newComment: '',
                 postId: {{ $post->id}},
-                userId: {{auth()->user()->id}}
+                userId: {{ $userId = auth()->user() === null ? -1 : auth()->user()->id}}
             },
             methods: {
                 createComment: function () {
@@ -37,6 +37,7 @@
                         user_id: this.userId
                     })
                         .then(response => {
+                            console.log(response.data);
                             this.comments.push(response.data);
                             this.newComment = '';
                         })
