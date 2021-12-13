@@ -43,12 +43,17 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|max:30', //todo add more...
-            'text_content' => 'required|unique:posts|max:140' //todo add more...
+            'text_content' => 'required|unique:posts|max:140',
+            'img' => 'mimes:jpg,png,jpeg|max:1096' // max size in KB.
         ]);
+
+        $newImgName = time() . '_' . $request->name . '.' . $request->img->extension();
+        $request->img->move(public_path('post_img'), $newImgName);
 
         $post = Post::create([
             'title' => $request->title,
             'text_content' => $request->text_content,
+            'img_path' => $newImgName,
             'user_id' => Auth::user()->id,
         ]);
 

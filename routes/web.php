@@ -50,6 +50,8 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
 Route::post('/posts/{id}', [PostController::class, 'update'])
     ->name('posts.update');
 
+//Route::resource('posts', 'App\Http\Controllers\PostController');
+
 // todo delete post here
 
 Route::get('/dashboard', function () {

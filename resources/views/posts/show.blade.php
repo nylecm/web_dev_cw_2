@@ -9,6 +9,9 @@
     <p>Created: {{$post->created_at}}, Edited: {{$post->updated_at}}</p>
     <p>Posted by: {{ $author->user_name}}</p>
     <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>
+    @if ($post->img_path != null)
+        <img src="{{ asset('post_img/' . $post->img_path)}}">
+    @endif
 
     <h5>Comments:</h5>
 
