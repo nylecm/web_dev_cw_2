@@ -60,4 +60,9 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class,
             'follows_users', 'user_id', 'following_id');
     }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

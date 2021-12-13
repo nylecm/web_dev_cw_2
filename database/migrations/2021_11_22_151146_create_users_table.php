@@ -22,7 +22,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->bigInteger('profile_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('profile_id')->references('id')->on('profiles')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
