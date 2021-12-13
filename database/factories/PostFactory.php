@@ -17,8 +17,6 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->realText(30),
             'text_content' => $this->faker->realText( 140),
-            'date_posted' => $datePosted,
-            'date_edited' => $this->faker->dateTimeBetween($datePosted, 'now', null),
         ];
     }
 }

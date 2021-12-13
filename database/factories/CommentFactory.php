@@ -19,8 +19,6 @@ class CommentFactory extends Factory
             'text_content' => $this->faker->realText( 140),
             'user_id' => $this->faker->numberBetween(1,DB::table('users')->count()),
             'post_id' => $this->faker->numberBetween(1,DB::table('posts')->count()),
-            'date_posted' => $datePosted,
-            'date_edited' => $this->faker->dateTimeBetween($datePosted, 'now', null),
         ];
     }
 }

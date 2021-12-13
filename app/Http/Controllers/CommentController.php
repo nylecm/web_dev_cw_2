@@ -103,8 +103,6 @@ class CommentController extends Controller
 
         $comment = new Comment();
         $comment->text_content = $request['text_content'];
-        $comment->date_posted = new DateTime('2021-11-23T22:22:22.12345Z'); // todo remove...
-        $comment->date_edited = new DateTime('2021-11-23T22:22:22.12345Z'); // todo remove...
         $comment->user_id = $request['user_id'];
         $comment->post_id = $request['post_id'];
         $comment->save();

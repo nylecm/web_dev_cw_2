@@ -41,8 +41,13 @@
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-            HELLO!!
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+            Quacker is an online community for cool, quack loving ducks like you!
+
+            Why use Quacker?
+
+            We all sometimes need to talk to a ducks when solving problems,
+            Quacker solves this problem by giving you a community to ducks to
+            talk to!
         </div>
     </div>
 </div>

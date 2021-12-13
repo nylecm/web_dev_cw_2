@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Post Index')
+@section('style')
+    <style>
+        .card {
+            margin-bottom: 15px;
+        }
+    </style>
+@endsection
+
+@section('title')
+    Posts
+@endsection
 
 @section('content')
-
-    <p>These are the posts on Fake Twitter:</p>
-
     <div class="container mt-5">
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column" id="post_view">
             @foreach ($posts as $post)
                 <div class="card">
                     <div class="card-body">

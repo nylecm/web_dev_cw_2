@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(20); // todo figure out sorting chronologically.
+        $posts = Post::paginate(12); // todo figure out sorting chronologically.
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -49,8 +49,6 @@ class PostController extends Controller
         $post = Post::create([
             'title' => $request->title,
             'text_content' => $request->text_content,
-            'date_posted' => new DateTime('2021-11-23T22:22:22.12345Z'), // todo remove...
-            'date_edited' => new DateTime('2021-11-23T22:22:22.12345Z'),
             'user_id' => Auth::user()->id,
         ]);
 

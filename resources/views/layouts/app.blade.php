@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quacker - @yield('title') </title>
+    @yield('style')
 </head>
 
 <body>
@@ -93,13 +94,19 @@
     </div>
 </nav>
 
-<img src="{{ asset('/img/quacker-logo-1.png') }}" alt="Quacker Logo" height="200">
+{{--<img src="{{ asset('/img/quacker-logo-1.png') }}" alt="Quacker Logo" height="200">--}}
 
-<h1>Quacker - @yield('title')</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center">
+        <h1>@yield('title')</h1>
+    </div>
+</div>
 
 {{--@include('includes.navbar')--}}
 <div>
     @yield('content')
 </div>
+
 </body>
+
 </html>
