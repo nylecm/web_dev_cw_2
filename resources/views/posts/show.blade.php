@@ -76,13 +76,13 @@
                             Comment</a>
 
 
-{{--                        <form method="POST" action="{{ route('comments.destroy', ['id' => @{{ comment.id }}]) }}">--}}
-{{--                            @csrf--}}
-{{--                            @method('DELETE')--}}
-{{--                            <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">--}}
-{{--                                Delete--}}
-{{--                            </button>--}}
-{{--                        </form>--}}
+                        <form method="POST" :action="'/comments/'+comment.id">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">
+                                Delete
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

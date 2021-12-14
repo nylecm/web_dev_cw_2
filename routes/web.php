@@ -64,6 +64,9 @@ Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])
 Route::post('/comments/{id}', [CommentController::class, 'update'])
     ->name('comments.update');
 
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])
+    ->name('comments.destroy');
+
 //Route::resource('posts', 'App\Http\Controllers\PostController');
 
 // todo delete post here
