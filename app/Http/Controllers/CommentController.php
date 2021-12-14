@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 use DateTime;
 
 class CommentController extends Controller
@@ -100,7 +100,16 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = auth()->user();
+        $comment = Comment::find($id);
+        if (!$comment->isTheOwner($user))
+        {
+            return redirect()->route('posts.index');
+        }
+
+        $comment->delete();
+        session()->flash('message', 'Comment successfully deleted! id: ' . $id);
+        return redirect()->route('posts.show', ['id' => $comment->post_id]);
     }
 
     public function apiIndex()

@@ -46,7 +46,15 @@
             @if( auth()->user()->id == $post->user_id)
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info" role="button"
-                       style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">Edit this Quack</a>
+                       style="font-size: 22px; margin-bottom: 20px; margin-top: 10px;margin-right: 8px">Edit this
+                        Quack</a>
+                    <form method="POST" action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">
+                            Delete
+                        </button>
+                    </form>
                 </div>
             @endif
 
@@ -60,13 +68,27 @@
                     <div class="card-body">
                         <p class="card-text">@{{ comment.text_content }}</p>
                     </div>
-                    <div class="d-flex justify-content-left" v-if="{{ auth()->user()->id}} == comment.user_id">
-                        <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info" role="button"
-                           style="font-size: 11px; margin-bottom: 5px; margin-top: 10px; margin-left: 10px">Edit this Comment</a>
+                    <div class=" d-flex justify-content-left" v-if="{{ auth()->user()->id}} == comment.user_id">
+
+                        <a :href="'/comments/' + comment.id + '/edit'" class="btn btn-info" onclick="this.href=comment.id+'/edit';return false;"
+                           role="button"
+                           style="font-size: 11px; margin-bottom: 5px; margin-top: 10px; margin-left: 10px">Edit this
+                            Comment</a>
+
+
+{{--                        <form method="POST" action="{{ route('comments.destroy', ['id' => @{{ comment.id }}]) }}">--}}
+{{--                            @csrf--}}
+{{--                            @method('DELETE')--}}
+{{--                            <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">--}}
+{{--                                Delete--}}
+{{--                            </button>--}}
+{{--                        </form>--}}
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <script>
             var app = new Vue({

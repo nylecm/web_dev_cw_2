@@ -52,6 +52,9 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
 Route::post('/posts/{id}', [PostController::class, 'update'])
     ->name('posts.update');
 
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])
+    ->name('posts.destroy');
+
 Route::post('/followers', [FollowUserController::class, 'store'])
     ->name('followers.store');
 

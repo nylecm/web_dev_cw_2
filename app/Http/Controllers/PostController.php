@@ -129,6 +129,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = auth()->user();
+        $post = Post::find($id);
+        if (!$post->isTheOwner($user))
+        {
+            return redirect()->route('posts.index');
+        }
+
+        $post->delete();
+        session()->flash('message', 'Post successfully deleted! id: ' . $id);
+        return redirect()->route('posts.index');
     }
 }
