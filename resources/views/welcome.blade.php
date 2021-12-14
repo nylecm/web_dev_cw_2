@@ -17,39 +17,47 @@
 
 {{--<body>--}}
 
+@section('style')
+    <style>
+        body {
+            background-image: url("{{'/img/flyingducks.jpg'}}");
+        }
+
+        h1 {
+            color: white;
+        }
+
+        h4 {
+            color: white;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    </style>
+@endsection
+
 @section('title', 'Welcome to Quacker')
 
 @section('content')
 
-<div>
-{{--    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">--}}
-{{--    @if (Route::has('login'))--}}
-{{--        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">--}}
-{{--            @auth--}}
-{{--                <a href="{{ url('/dashboard') }}"--}}
-{{--                   class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>--}}
-{{--            @else--}}
-{{--                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>--}}
+{{--    <div>--}}
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h4>Quacker is an online community for cool, quack-loving ducks like you!</h4>
 
-{{--                @if (Route::has('register'))--}}
-{{--                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>--}}
-{{--                @endif--}}
-{{--            @endauth--}}
-{{--        </div>--}}
-{{--    @endif--}}
+                @if ( Route::has('login'))
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="btn btn-info" role="button" style="font-size: 22px">Go To Dashboard</a>
+                    @else
+                        <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Register</a>
+                    @endauth
+                @endif
+                {{--                    Why use Quacker?--}}
 
-
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-        <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-            Quacker is an online community for cool, quack loving ducks like you!
-
-            Why use Quacker?
-
-            We all sometimes need to talk to a ducks when solving problems,
-            Quacker solves this problem by giving you a community to ducks to
-            talk to!
+                {{--                    We all sometimes need to talk to a ducks when solving problems,--}}
+                {{--                    Quacker solves this problem by giving you a community to ducks to--}}
+                {{--                        talk to!</p>--}}
+            </div>
         </div>
-    </div>
-</div>
+{{--    </div>--}}
 
 @endsection

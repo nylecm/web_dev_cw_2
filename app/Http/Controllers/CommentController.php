@@ -60,7 +60,14 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+//        $user = auth()->user();
+//        $comment = Comment::findOrFail($id);
+//        if (!$comment->isTheOwner($user))
+//        {
+//            return redirect()->route('posts.index');
+//        }
+//        return view('comments.edit', ['comment' => $comment]);
+        //todo comment editing
     }
 
     /**

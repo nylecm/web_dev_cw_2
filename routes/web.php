@@ -54,6 +54,11 @@ Route::post('/posts/{id}', [PostController::class, 'update'])
 Route::post('/followers', [FollowUserController::class, 'store'])
     ->name('followers.store');
 
+Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])
+    ->name('comments.edit');
+
+Route::post('/comments/{id}', [CommentController::class, 'update'])
+    ->name('comments.update');
 
 //Route::resource('posts', 'App\Http\Controllers\PostController');
 
