@@ -46,7 +46,7 @@
             @if( auth()->user()->id == $post->user_id)
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info" role="button"
-                       style="font-size: 22px; margin-bottom: 20px">Edit this Quack</a>
+                       style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">Edit this Quack</a>
                 </div>
             @endif
 
@@ -60,8 +60,11 @@
                     <div class="card-body">
                         <p class="card-text">@{{ comment.text_content }}</p>
                     </div>
+                    <div class="d-flex justify-content-left" v-if="{{ auth()->user()->id}} == comment.user_id">
+                        <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info" role="button"
+                           style="font-size: 11px; margin-bottom: 5px; margin-top: 10px; margin-left: 10px">Edit this Comment</a>
+                    </div>
                 </div>
-
             </div>
         </div>
 
