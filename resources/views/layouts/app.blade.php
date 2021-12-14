@@ -35,9 +35,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.show', ['id' => auth()->user()->id]) }}">My Profile</a>
-                </li>
+                @if (auth()->user() != null)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.show', ['id' => auth()->user()->id]) }}">My
+                            Profile</a>
+                    </li>
+                @endif
                 {{--todo admin--}}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admin</a>
