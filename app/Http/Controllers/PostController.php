@@ -46,9 +46,12 @@ class PostController extends Controller
             'text_content' => 'required|unique:posts|max:140',
             'img' => 'mimes:jpg,png,jpeg|max:1096' // max size in KB.
         ]);
-
-        $newImgName = time() . '_' . $request->name . '.' . $request->img->extension();
-        $request->img->move(public_path('post_img'), $newImgName);
+        $newImgName = null;
+        if ($request->img != null)
+        {
+            $newImgName = time() . '_' . $request->name . '.' . $request->img->extension();
+            $request->img->move(public_path('post_img'), $newImgName);
+        }
 
         $post = Post::create([
             'title' => $request->title,

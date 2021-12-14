@@ -1,26 +1,99 @@
 @extends('layouts.app')
 
 @section('title')
-    Hello <a href="{{ route('users.show', ['id' => auth()->user()->id]) }}">{{ auth()->user()->user_name }}.</a>
+    Hello {{ auth()->user()->user_name }}.</a>
 @endsection
 
 @section('content')
+
+
     <div class="container mt-5">
-        <h3>Latest Posts:</h3>
+        <div class="align-content-center">
+            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Your Profile</a>
+            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Latest Posts</a>
+            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Your Follower's Posts</a>
+            <a href="{{ route('posts.create') }}" class="btn btn-info" role="button" style="font-size: 22px">Post a
+                Quack</a>
 
+        </div>
+        h3>Latest Posts:</h3>
+        <div class="container-fluid">
+            <div class="d-flex flex-row flex-nowrap overflow-auto">
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+            </div>
+        </div>
         <h3>Your Follower's Posts:</h3>
-
+        <div class="container-fluid">
+            <div class="d-flex flex-row flex-nowrap overflow-auto">
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+            </div>
+        </div>
         <h3>Your Posts:</h3>
-
+        <div class="container-fluid">
+            <div class="d-flex flex-row flex-nowrap overflow-auto">
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+                <div class="col-3">
+                    <div class="card card-block">Card</div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <p><a href="{{ route('posts.index') }}">View some cool Quacks!</a></p>
-    <p><a href="{{ route('posts.create') }}">Post a Quack</a></p>
     {{$user = auth()->user()}}
-    <div>
+    {{--<div>
         <form method="POST" action="/logout">
             @csrf
             <button type="submit">Log Out</button>
         </form>
-    </div>
+    </div>--}}
+
 @endsection
