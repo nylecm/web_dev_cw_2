@@ -62,6 +62,11 @@ class User extends Authenticatable
             'follows_users', 'user_id', 'following_id');
     }
 
+    public function isFollowing(User $user)
+    {
+        return !! $this->follows()->where('following_id', $user->id)->count();
+    }
+
     public function profile()
     {
         return $this->hasOne(Profile::class);
