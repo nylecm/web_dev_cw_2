@@ -33,7 +33,7 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +44,7 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,37 +55,47 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-//        $user = auth()->user();
-//        $comment = Comment::findOrFail($id);
-//        if (!$comment->isTheOwner($user))
-//        {
-//            return redirect()->route('posts.index');
-//        }
-//        return view('comments.edit', ['comment' => $comment]);
-        //todo comment editing
+        $user = auth()->user();
+        $comment = Comment::findOrFail($id);
+        if (!$comment->isTheOwner($user)) {
+            return redirect()->route('posts.index');
+        }
+        return view('comments.edit', ['comment' => $comment]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        //todo make for comment
+        //validate request
+        $request->validate([
+            'text_content' => 'required|max:140'
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->text_content = $request->text_content;
+        $comment->save();
+//        $comment->update(['title' => $request->title, 'text_content' => $request->text_content]);
+
+        return redirect()->route('posts.show', ['id' => $comment->post_id]);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -103,7 +113,8 @@ class CommentController extends Controller
         return Comment::all()->where('post_id', $id);
     }
 
-    public function apiStore(Request $request) {
+    public function apiStore(Request $request)
+    {
 //        $request->validate([
 //            'text_content' => 'required|max:140'
 //        ]); fixme uncomment
