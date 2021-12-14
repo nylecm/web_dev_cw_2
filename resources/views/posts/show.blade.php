@@ -22,7 +22,7 @@
     <div class="container mt-5">
         <div class="d-flex flex-column" id="post_view">
             <div class="card">
-{{--                <h3 class="card-header">{{ $post->title}}</h3>--}}
+                {{--                <h3 class="card-header">{{ $post->title}}</h3>--}}
                 <div class="card-body">
                     <p class="card-text">{{ $post->text_content}}</p>
                     @if ($post->img_path != null)
@@ -36,16 +36,25 @@
                     @endif
 
                     <p class="card-text">Posted by: <a
-                            href="{{ route('users.show', ['id' => $post->user_id]) }}">{{ "@" . $author->user_name}}</a></p>
+                            href="{{ route('users.show', ['id' => $post->user_id]) }}">{{ "@" . $author->user_name}}</a>
+                    </p>
 
-                        <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>
+                    <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>
                 </div>
             </div>
+
+            @if( auth()->user()->id == $post->user_id)
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info" role="button"
+                       style="font-size: 22px; margin-bottom: 20px">Edit this Quack</a>
+                </div>
+            @endif
 
             <h4>Comments:</h4>
 
             <div id="root">
-                <input type="text" id="input" class="form-control" placeholder="Enter your comment here:" v-model="newComment">
+                <input type="text" id="input" class="form-control" placeholder="Enter your comment here:"
+                       v-model="newComment">
                 <button @click="createComment" class="btn btn-primary">Post Comment</button>
                 <div class="card" v-for="comment in comments">
                     <div class="card-body">
