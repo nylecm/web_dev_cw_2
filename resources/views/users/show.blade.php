@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-    <a href="{{route('profiles.edit', ['id' => $user->profile_id])}}">Edit Profile</a>
+    <a href="{{ route('profiles.edit', ['id' => $user->profile_id])}}">Edit Profile</a>
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
             @if ($profile->bio != null)
-            <p>
-                Bio: {{ $profile->bio }}
-            </p>
+                <p>
+                    Bio: {{ $profile->bio }}
+                </p>
             @else
                 This user does not have a bio.
             @endif
@@ -24,11 +24,14 @@
                         <input type="submit" class="btn btn-info" value="Follow" style="margin-bottom: 20px">
                     </form>
                 @else
-                    {{--                    <form method="POST" action="{{ route('followers.delete', ['following' => $user->id]) }}">--}}
-                    {{--                        @csrf--}}
-                    {{--                        <input type="hidden" name="id" value="{{ $user->id }}">--}}
-                    {{--                        <input type="submit" value="Unfollow">--}}
-                    {{--                    </form>--}}
+                    <form method="POST" action="{{ route('followers.destroy', ['id' => $user->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+                        <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">
+                            Unfollow
+                        </button>
+                    </form>
                 @endif
             @endif
         </div>

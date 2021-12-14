@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FollowsUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FollowUserController extends Controller
 {
@@ -87,6 +88,19 @@ class FollowUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        session()->flash('message', 'ss');
+        $follow = FollowsUsers::where('user_id', auth()->user()->id)->where('following_id', $id)->first();
+
+        if ($follow->user_id != auth()->user()->id)
+        {
+            return redirect()->route('users.show', ['id' => $id]);
+        }
+
+        FollowsUsers::where('user_id', auth()->user()->id)->where('following_id', $id)->delete();
+
+        session()->flash('message', 'Follow successfully deleted! id: ' . auth()->user()->id .
+            'no longer follows id: '.$id);
+        return redirect()->route('users.show', ['id' => $id]);
+
     }
 }

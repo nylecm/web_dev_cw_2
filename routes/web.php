@@ -59,6 +59,9 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])
 Route::post('/followers', [FollowUserController::class, 'store'])
     ->name('followers.store');
 
+Route::delete('/followers/{id}', [FollowUserController::class, 'destroy'])
+    ->name('followers.destroy');
+
 Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])
     ->name('comments.edit');
 
