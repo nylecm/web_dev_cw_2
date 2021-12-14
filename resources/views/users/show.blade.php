@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <a href="{{route('profiles.edit', ['id' => $user->profile_id])}}">Edit Profile</a>
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
             @if ( auth()->user()->id != $user->id)

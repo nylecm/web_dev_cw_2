@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FollowUserController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
@@ -66,6 +67,16 @@ Route::post('/comments/{id}', [CommentController::class, 'update'])
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy'])
     ->name('comments.destroy');
+
+// profile:
+Route::post('/profiles', [ProfileController::class, 'store'])
+    ->name('profiles.store');
+
+Route::get('/profiles/{id}/edit', [ProfileController::class, 'edit'])
+    ->name('profiles.edit');
+
+Route::post('/profiles/{id}', [ProfileController::class, 'update'])
+    ->name('profiles.update');
 
 //Route::resource('posts', 'App\Http\Controllers\PostController');
 
