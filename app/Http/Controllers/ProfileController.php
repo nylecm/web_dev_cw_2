@@ -61,7 +61,7 @@ class ProfileController extends Controller
         $profile = Profile::findOrFail($id);
         if (!$profile->belongsTo($user))
         {
-            return redirect()->route('users.show', ['id' => $id]);
+            return redirect()->route('users.show', ['id' => $user->id]);
         }
         return view('profiles.edit', ['profile' => $profile]);
 
@@ -76,7 +76,17 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //validate request
+        $request->validate([
+            'bio' => 'required|max:140'
+        ]);
+
+        $profile = Profile::find($id);
+        $profile->bio = $request->bio;
+        $profile->save();
+
+        return redirect()->route('users.show', ['id' => auth()->user()->id]);
+
     }
 
     /**

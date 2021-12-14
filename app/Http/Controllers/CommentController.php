@@ -77,7 +77,6 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //todo make for comment
         //validate request
         $request->validate([
             'text_content' => 'required|max:140'
@@ -89,7 +88,6 @@ class CommentController extends Controller
 //        $comment->update(['title' => $request->title, 'text_content' => $request->text_content]);
 
         return redirect()->route('posts.show', ['id' => $comment->post_id]);
-
     }
 
     /**
