@@ -39,25 +39,18 @@
 
 @section('content')
 
-{{--    <div>--}}
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h4>Quacker is an online community for cool, quack-loving ducks like you!</h4>
-
-                @if ( Route::has('login'))
-                    @auth
-                        <a href="{{ route('dashboard') }}" class="btn btn-info" role="button" style="font-size: 22px">Go To Dashboard</a>
-                    @else
-                        <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Register</a>
-                    @endauth
-                @endif
-                {{--                    Why use Quacker?--}}
-
-                {{--                    We all sometimes need to talk to a ducks when solving problems,--}}
-                {{--                    Quacker solves this problem by giving you a community to ducks to--}}
-                {{--                        talk to!</p>--}}
-            </div>
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h4>Quacker is an online community for cool, quack-loving ducks like you!</h4>
+            @if ( Route::has('login'))
+                @auth
+                    <a href="{{ route('dashboard') }}" class="btn btn-info" role="button" style="font-size: 22px">Go To
+                        Dashboard</a>
+            @else
+                    <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Register</a>
+                @endauth
+            @endif
         </div>
-{{--    </div>--}}
+    </div>
 
 @endsection

@@ -52,12 +52,18 @@
                     axios.post("{{ route('api.comments.store')}}", {
                         text_content: this.newComment,
                         post_id: this.postId,
-                        user_id: this.userId
+                        user_id: this.userId,
                     })
                         .then(response => {
-                            console.log(response.data);
-                            this.comments.push(response.data);
-                            this.newComment = '';
+                            axios.get("{{ route('api.comments.index.forpost', ['id' => $post->id])}}")
+                                .then(response => {
+                                    console.log(response.data)
+                                    console.log(this.comments)
+                                    this.comments = response.data;
+                                })
+                                .catch(response => {
+                                    console.log(response);
+                                })
                         })
                         .catch(response => {
                             console.log(response);
@@ -67,6 +73,8 @@
             mounted() {
                 axios.get("{{ route('api.comments.index.forpost', ['id' => $post->id])}}")
                     .then(response => {
+                        console.log(response.data)
+                        console.log(this.comments)
                         this.comments = response.data;
                     })
                     .catch(response => {
