@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
+use App\Models\Profile;
 use App\Models\Reaction;
 use Illuminate\Database\Seeder;
 use App\Models\Post;
@@ -17,10 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(ProfileTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
         $this->call(ReactionTableSeeder::class);
+
+        Profile::factory(10)->create();
 
         User::factory(10)
             ->has(Post::factory()->count(3))->create();

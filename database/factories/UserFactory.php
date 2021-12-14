@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
+    static $prev_ID = 1;
     /**
      * Define the model's default state.
      *
@@ -14,6 +15,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        self::$prev_ID++;
         return [
             'user_name' => $this->faker->unique()->userName(),
             'full_name' => $this->faker->name(),
@@ -22,6 +24,7 @@ class UserFactory extends Factory
                                                      '-13 years', null),
             'email_verified_at' => now(),
             'password' => $this->faker->password(), // password
+            'profile_id' => self::$prev_ID,
             'remember_token' => Str::random(10),
         ];
     }

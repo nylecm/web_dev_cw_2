@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
         $u->email = "michalnylec@gmail.com";
         $u->date_of_birth = new DateTime('2001-07-11T22:22:22.12345Z');
         $u->password = "123";
+        $u->profile_id = 1;
         $u->save();
     }
 }
