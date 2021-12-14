@@ -17,6 +17,16 @@
                 <li>Click here to see his/her posts:</li>
                 <a href="{{route('users.index')}}">Cancel</a>
             </div>
+            {{--todo if not following--}}
+            @if (auth()->user()->id != $user->id)
+                <form method="POST" action="{{ route('followers.store', $user_id) }}">
+                    @csrf
+                    <input type="submit" value="Follow">
+                </form>
+            @endif
+            {{--todo else following show Unfollow button--}}
+
+
         </div>
     </div>
 @endsection

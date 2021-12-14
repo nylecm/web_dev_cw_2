@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
@@ -49,6 +50,10 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
 
 Route::post('/posts/{id}', [PostController::class, 'update'])
     ->name('posts.update');
+
+Route::post('/followers', [FollowUserController::class, 'store'])
+    ->name('followers.store');
+
 
 //Route::resource('posts', 'App\Http\Controllers\PostController');
 
