@@ -8,14 +8,18 @@
 
 
     <div class="container mt-5">
-        <div class="align-content-center">
-            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Your Profile</a>
-            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Latest Posts</a>
-            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px">Your Follower's Posts</a>
-            <a href="{{ route('posts.create') }}" class="btn btn-info" role="button" style="font-size: 22px">Post a
+        <div class="d-flex justify-content-center" style="margin-bottom: 20px">
+            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px;margin-right: 8px">Your
+                Profile</a>
+            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px;margin-right: 8px">Latest
+                Posts</a>
+            <a href="/register" class="btn btn-info" role="button" style="font-size: 22px;margin-right: 8px">Your
+                Follower's Posts</a>
+            <a href="{{ route('posts.create') }}" class="btn btn-info" role="button"
+               style="font-size: 22px;margin-right: 8px">Post a
                 Quack</a>
-
         </div>
+
         h3>Latest Posts:</h3>
         <div class="container-fluid">
             <div class="d-flex flex-row flex-nowrap overflow-auto">

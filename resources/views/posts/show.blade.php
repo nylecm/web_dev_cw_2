@@ -35,7 +35,7 @@
                         <p class="card-text">Posted: {{$post->created_at}}, Last Edited: {{$post->updated_at}}</p>
                     @endif
 
-                    <a class="card-text">Posted by: <a
+                    <p class="card-text">Posted by: <a
                             href="{{ route('users.show', ['id' => $post->user_id]) }}">{{ "@" . $author->user_name}}</a></p>
 
                         <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>
@@ -45,8 +45,8 @@
             <h4>Comments:</h4>
 
             <div id="root">
-                <input type="text" id="input" v-model="newComment">
-                <button @click="createComment">Post Comment</button>
+                <input type="text" id="input" class="form-control" placeholder="Enter your comment here:" v-model="newComment">
+                <button @click="createComment" class="btn btn-primary">Post Comment</button>
                 <div class="card" v-for="comment in comments">
                     <div class="card-body">
                         <p class="card-text">@{{ comment.text_content }}</p>

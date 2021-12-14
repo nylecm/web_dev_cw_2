@@ -36,7 +36,7 @@
                     <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
+                    <a class="nav-link" href="{{ route('users.show', ['id' => auth()->user()->id]) }}">My Profile</a>
                 </li>
                 {{--todo admin--}}
                 <li class="nav-item">
