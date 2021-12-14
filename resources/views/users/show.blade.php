@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ "@" . $user->user_name }}
+    {{ "@" . $user->user_name }}
 @endsection
 
 @section('content')
@@ -9,14 +9,14 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
             <p>
-                Bio: {{ $profile->bio }}
+                {{ $profile->bio }}
             </p>
             @if ( auth()->user()->id != $user->id)
                 @if( ! auth()->user()->isFollowing($user))
                     <form method="POST" action="{{ route('followers.store', ['following' => $user->id]) }}">
                         @csrf
                         <input type="hidden" name="id" value="{{ $user->id }}">
-                        <input type="submit"  class="btn btn-info" value="Follow" style="margin-bottom: 20px">
+                        <input type="submit" class="btn btn-info" value="Follow" style="margin-bottom: 20px">
                     </form>
                 @else
                     {{--                    <form method="POST" action="{{ route('followers.delete', ['following' => $user->id]) }}">--}}
