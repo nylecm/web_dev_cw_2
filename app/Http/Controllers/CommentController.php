@@ -85,7 +85,6 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         $comment->text_content = $request->text_content;
         $comment->save();
-//        $comment->update(['title' => $request->title, 'text_content' => $request->text_content]);
 
         return redirect()->route('posts.show', ['id' => $comment->post_id]);
     }

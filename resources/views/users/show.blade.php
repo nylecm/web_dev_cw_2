@@ -8,6 +8,9 @@
     <a href="{{route('profiles.edit', ['id' => $user->profile_id])}}">Edit Profile</a>
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
+            <p>
+                Bio: {{ $profile->bio }}
+            </p>
             @if ( auth()->user()->id != $user->id)
                 @if( ! auth()->user()->isFollowing($user))
                     <form method="POST" action="{{ route('followers.store', ['following' => $user->id]) }}">
