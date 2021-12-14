@@ -34,15 +34,15 @@ class FollowUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $follow = FollowsUsers::create([
             'user_id' => Auth::user()->id,
-            'text_content' => $id
+            'following_id' => $request['id'],
         ]);
 
         session()->flash('message', 'Follow was created' . $follow);
-        return redirect()->route('user.show', ['id' => $id]);
+        return redirect()->route('users.show', ['id' => $request['id']]);
     }
 
     /**

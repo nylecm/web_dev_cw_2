@@ -19,8 +19,9 @@
             </div>
             {{--todo if not following--}}
             @if (auth()->user()->id != $user->id)
-                <form method="POST" action="{{ route('followers.store', $user_id) }}">
+                <form method="POST" action="{{ route('followers.store', ['following' => $user->id]) }}">
                     @csrf
+                    <input type="hidden" name="id" value="{{ $user->id }}">
                     <input type="submit" value="Follow">
                 </form>
             @endif
