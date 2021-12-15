@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentNotifierController;
 use App\Http\Controllers\FollowUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -81,9 +82,7 @@ Route::get('/profiles/{id}/edit', [ProfileController::class, 'edit'])
 Route::post('/profiles/{id}', [ProfileController::class, 'update'])
     ->name('profiles.update');
 
-//Route::resource('posts', 'App\Http\Controllers\PostController');
-
-// todo delete post here
+Route::get('/send-comment-notification', [CommentNotifierController::class, 'sendCommentNotification']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

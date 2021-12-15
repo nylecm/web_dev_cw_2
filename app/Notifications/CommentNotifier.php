@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notification;
 class CommentNotifier extends Notification
 {
     use Queueable;
+
     private $commentData;
 
     /**
@@ -25,7 +26,7 @@ class CommentNotifier extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -36,21 +37,21 @@ class CommentNotifier extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line($this.$this->commentData['text_content'])
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line($this->commentData['text_content'])
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
