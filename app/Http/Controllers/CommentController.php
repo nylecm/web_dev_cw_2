@@ -136,14 +136,29 @@ class CommentController extends Controller
         $comment->save();
         session()->flash('message', 'Comment was created' . $comment);
 
-        $post = Post::where('id', $comment->post_id)->first();
-        $user = User::where('id', $post->user_id)->first();
-        $commentData = [
-            'text_content' => $comment->text_content,
-        ];
-        Notification::send($user, new CommentNotifier($commentData));
+        // notification todo move to route.
+        //$this->apiEmail($comment);
+
         return $comment;
 
+    }
+
+    /**
+     * @param Comment $comment
+     * @return void
+     */
+    public function apiEmail(Request $request): void
+    {
+        session()->flash('message', 'comment_id' . $request['comment_id']);
+        $comment = Comment::where('id', $request['comment_id'])->first();
+        $post = Post::where('id', $comment->post_id)->first();
+        $post_owner = User::where('id', $post->user_id)->first();
+        $comment_poster = User::where('id', $comment->user_id)->first();
+        $commentData = [
+            'text_content' => $comment->text_content,
+            'comment_poster' => $comment_poster,
+        ];
+        Notification::send($post_owner, new CommentNotifier($commentData));
     }
 
 }

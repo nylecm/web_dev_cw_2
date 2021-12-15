@@ -43,8 +43,10 @@ class CommentNotifier extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line($this->commentData['text_content'])
-            ->action('Notification Action', url('/'))
+            ->line('Someone has commented you one of your posts!')
+            ->line('Comment: ' . $this->commentData['text_content'])
+            ->line('From: '. $this->commentData['comment_poster']) //todo add sender to email
+            ->action('View your post:', url('/'))
             ->line('Thank you for using our application!');
     }
 

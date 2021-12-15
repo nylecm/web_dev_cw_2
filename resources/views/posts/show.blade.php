@@ -68,9 +68,11 @@
                     <div class="card-body">
                         <p class="card-text">@{{ comment.text_content }}</p>
                     </div>
-                    <div class=" d-flex justify-content-left" v-if="({{ auth()->user()->id}} == comment.user_id) || {{ auth()->user()->isAdmin }}">
+                    <div class=" d-flex justify-content-left"
+                         v-if="({{ auth()->user()->id}} == comment.user_id) || {{ auth()->user()->isAdmin }}">
 
-                        <a :href="'/comments/' + comment.id + '/edit'" class="btn btn-info" onclick="this.href=comment.id+'/edit';return false;"
+                        <a :href="'/comments/' + comment.id + '/edit'" class="btn btn-info"
+                           onclick="this.href=comment.id+'/edit';return false;"
                            role="button"
                            style="font-size: 11px; margin-bottom: 5px; margin-top: 10px; margin-left: 10px">Edit this
                             Comment</a>
@@ -89,7 +91,6 @@
         </div>
 
 
-
         <script>
             var app = new Vue({
                 el: "#root",
@@ -101,16 +102,23 @@
                 },
                 methods: {
                     createComment: function () {
+                        function emailNotification(id) {
+                            axios.post("{{ route('api.comments.email') }}",
+                                {comment_id: id})
+                        }
+
                         axios.post("{{ route('api.comments.store')}}", {
                             text_content: this.newComment,
                             post_id: this.postId,
                             user_id: this.userId,
                         })
                             .then(response => {
+                                console.log('id' + response.data.id);
+                                emailNotification(response.data.id);
                                 axios.get("{{ route('api.comments.index.forpost', ['id' => $post->id])}}")
                                     .then(response => {
-                                        console.log(response.data)
-                                        console.log(this.comments)
+                                        console.log(response.data);
+                                        console.log(this.comments);
                                         this.comments = response.data;
                                     })
                                     .catch(response => {

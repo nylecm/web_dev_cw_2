@@ -29,3 +29,6 @@ Route::get('/comments/{id}', [CommentController::class, 'apiCommentsForPost'])
 
 Route::post('/comments', [CommentController::class, 'apiStore'])
     ->name('api.comments.store');
+
+Route::post('/comments-email', [CommentController::class, 'apiEmail'])
+    ->name('api.comments.email');
