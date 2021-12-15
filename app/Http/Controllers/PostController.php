@@ -139,7 +139,7 @@ class PostController extends Controller
     {
         $user = auth()->user();
         $post = Post::find($id);
-        if (!$post->isTheOwner($user)) {
+        if (! (auth()->user()->isAdmin || $post->isTheOwner($user))) {
             return redirect()->route('posts.index');
         }
 

@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            @if( auth()->user()->id == $post->user_id)
+            @if( auth()->user()->isAdmin || auth()->user()->id == $post->user_id)
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info" role="button"
                        style="font-size: 22px; margin-bottom: 20px; margin-top: 10px;margin-right: 8px">Edit this
