@@ -156,7 +156,8 @@ class CommentController extends Controller
         $comment_poster = User::where('id', $comment->user_id)->first();
         $commentData = [
             'text_content' => $comment->text_content,
-            'comment_poster' => $comment_poster,
+            'comment_poster' => $comment_poster->user_name,
+            'post_id' => $comment->post_id
         ];
         Notification::send($post_owner, new CommentNotifier($commentData));
     }

@@ -46,7 +46,7 @@ class CommentNotifier extends Notification
             ->line('Someone has commented you one of your posts!')
             ->line('Comment: ' . $this->commentData['text_content'])
             ->line('From: '. $this->commentData['comment_poster']) //todo add sender to email
-            ->action('View your post:', url('/'))
+            ->action('View your post:', url(route('posts.show', ['id' => $this->commentData['post_id']])))
             ->line('Thank you for using our application!');
     }
 
