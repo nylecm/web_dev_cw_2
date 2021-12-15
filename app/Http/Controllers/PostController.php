@@ -125,7 +125,6 @@ class PostController extends Controller
         }
 
         $post->save();
-//        $post->update(['title' => $request->title, 'text_content' => $request->text_content]);
 
         return redirect()->route('posts.index');
     }

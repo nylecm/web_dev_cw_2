@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('date_of_birth')->nullable(); // todo make not nullable
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('isAdmin')->default(false);
             $table->bigInteger('profile_id')->unsigned();
             $table->rememberToken();
             $table->timestamps();

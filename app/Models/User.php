@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Profile::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->isAdmin;
+    }
 }
