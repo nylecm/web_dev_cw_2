@@ -68,7 +68,7 @@
                     <div class="card-body">
                         <p class="card-text">@{{ comment.text_content }}</p>
                     </div>
-                    <div class=" d-flex justify-content-left" v-if="{{ auth()->user()->id}} == comment.user_id">
+                    <div class=" d-flex justify-content-left" v-if="({{ auth()->user()->id}} == comment.user_id) || {{ auth()->user()->isAdmin }}">
 
                         <a :href="'/comments/' + comment.id + '/edit'" class="btn btn-info" onclick="this.href=comment.id+'/edit';return false;"
                            role="button"
