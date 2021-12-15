@@ -47,8 +47,7 @@ class PostController extends Controller
             'img' => 'mimes:jpg,png,jpeg|max:1096' // max size in KB.
         ]);
         $newImgName = null;
-        if ($request->img != null)
-        {
+        if ($request->img != null) {
             $newImgName = time() . '_' . $request->name . '.' . $request->img->extension();
             $request->img->move(public_path('post_img'), $newImgName);
         }
@@ -90,8 +89,7 @@ class PostController extends Controller
     {
         $user = auth()->user();
         $post = Post::findOrFail($id);
-        if (!$post->isTheOwner($user))
-        {
+        if (!$post->isTheOwner($user)) {
             return redirect()->route('posts.index');
         }
         return view('posts.edit', ['post' => $post]);
@@ -115,6 +113,17 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->title;
         $post->text_content = $request->text_content;
+
+        if ($request->update_img) {
+            if ($request->img != null) {
+                $newImgName = time() . '_' . $request->name . '.' . $request->img->extension();
+                $request->img->move(public_path('post_img'), $newImgName);
+                $post->img_path = $newImgName;
+            } else {
+                $post->img_path = "";
+            }
+        }
+
         $post->save();
 //        $post->update(['title' => $request->title, 'text_content' => $request->text_content]);
 
@@ -131,8 +140,7 @@ class PostController extends Controller
     {
         $user = auth()->user();
         $post = Post::find($id);
-        if (!$post->isTheOwner($user))
-        {
+        if (!$post->isTheOwner($user)) {
             return redirect()->route('posts.index');
         }
 

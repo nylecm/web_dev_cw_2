@@ -101,6 +101,5 @@ class FollowUserController extends Controller
         session()->flash('message', 'Follow successfully deleted! id: ' . auth()->user()->id .
             'no longer follows id: '.$id);
         return redirect()->route('users.show', ['id' => $id]);
-
     }
 }
