@@ -89,7 +89,7 @@ class PostController extends Controller
     {
         $user = auth()->user();
         $post = Post::findOrFail($id);
-        if (!$post->isTheOwner($user)) {
+        if (!(auth()->user()->isAdmin || $post->isTheOwner($user))) {
             return redirect()->route('posts.index');
         }
         return view('posts.edit', ['post' => $post]);
@@ -126,7 +126,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.show', ['id' => $post->id]);
     }
 
     /**
