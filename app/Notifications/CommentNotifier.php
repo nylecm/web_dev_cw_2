@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class CommentNotifier extends Notification
 {
     use Queueable;
+    private $commentData;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($commentData)
     {
-        //
+        $this->commentData = $commentData;
     }
 
     /**
@@ -41,7 +42,7 @@ class CommentNotifier extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
+                    ->line($this.$this->commentData['text_content'])
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
