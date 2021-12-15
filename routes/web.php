@@ -1,13 +1,24 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentNotifierController;
 use App\Http\Controllers\FollowUserController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Services\Twitter;
+use Illuminate\Support\Facades\Route;
 
+// Service Container Routes
+
+app()->singleton(Twitter::class, function ($app) {
+    return new Twitter('FaV5Rij67hl2h3Agvk7ponaKl');
+});
+
+$twitter = app()->make(Twitter::class);
+$twitter2 = app()->make(Twitter::class);
+
+dd($twitter, $twitter2); //todo remove
 
 /*
 |--------------------------------------------------------------------------
