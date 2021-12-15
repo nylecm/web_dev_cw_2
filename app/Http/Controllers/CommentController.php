@@ -62,7 +62,7 @@ class CommentController extends Controller
     {
         $user = auth()->user();
         $comment = Comment::findOrFail($id);
-        if (!$comment->isTheOwner($user)) {
+        if (! ($comment->isTheOwner($user) || auth()->user()->isAdmin)) {
             return redirect()->route('posts.index');
         }
         return view('comments.edit', ['comment' => $comment]);
@@ -83,6 +83,9 @@ class CommentController extends Controller
         ]);
 
         $comment = Comment::find($id);
+        if (! ($comment->isTheOwner(auth()->user()) || auth()->user()->isAdmin)) {
+            return redirect()->route('posts.index');
+        }
         $comment->text_content = $request->text_content;
         $comment->save();
 
