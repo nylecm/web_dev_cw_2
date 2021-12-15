@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
+use App\Notifications\CommentNotifier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use DateTime;
+use Illuminate\Support\Facades\Notification;
 
 class CommentController extends Controller
 {
@@ -134,6 +135,15 @@ class CommentController extends Controller
         $comment->post_id = $request['post_id'];
         $comment->save();
         session()->flash('message', 'Comment was created' . $comment);
+
+        $post = Post::where('id', $comment->post_id)->first();
+        $user = User::where('id', $post->user_id)->first();
+        $commentData = [
+            'text_content' => $comment->text_content,
+        ];
+        Notification::send($user, new CommentNotifier($commentData));
         return $comment;
+
     }
+
 }
