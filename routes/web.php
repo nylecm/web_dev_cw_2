@@ -16,9 +16,8 @@ app()->singleton(Twitter::class, function ($app) {
 });
 
 $twitter = app()->make(Twitter::class);
-$twitter2 = app()->make(Twitter::class);
 
-dd($twitter, $twitter2); //todo remove
+//dd($twitter); //todo remove
 
 /*
 |--------------------------------------------------------------------------
