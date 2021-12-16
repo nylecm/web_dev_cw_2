@@ -23,31 +23,23 @@
         </div>
 
         <div class="d-flex flex-column" id="post_view">
-            @foreach ($posts as $post)
+            @for ($i = 0; $i < sizeof($posts); $i++)
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title"><a href="{{ route('posts.show', ['id' => $post->id ])}}"
-                                                  class="card-link">{{ $post->title}}</a></h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Posted by: {{ $post->user_id}}</h6>
-                        <p class="card-text">{{ $post->text_content}}</p>
-                        <p class="card-text">X Comments</p>
-
-                        <form id={{"grp" . $post->id}}>
-                            <p>
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"
-                                 id="{{$post->id}}"> {{--todo limit choices to 1--}}
-                                <input type="checkbox" class="btn-check" id="{{ "btncheck1" . $post->id}}"
-                                       autocomplete="off">
-                                <label class="btn btn-primary" for="{{ "btncheck1" . $post->id}}">👍</label>
-                                <input type="checkbox" class="btn-check" id="{{ "btncheck2" . $post->id}}"
-                                       autocomplete="off">
-                                <label class="btn btn-primary" for="{{ "btncheck2" . $post->id}}">👎</label>
-                            </div>
-                            </p>
-                        </form>
+                        <h4 class="card-title"><a href="{{ route('posts.show', ['id' => $posts[$i]->id ])}}"
+                                                  class="card-link">{{ $posts[$i]->title}}</a></h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Posted by: {{ $post_authors[$i]}}</h6>
+                        <p class="card-text">{{ $posts[$i]->text_content}}</p>
+                        @if ( $post_comm_count[$i] == 0)
+                            <p class="card-text">No Comments</p>
+                        @elseif ( $post_comm_count[$i] == 1)
+                            <p class="card-text">1 Comment</p>
+                        @else
+                            <p class="card-text">{{ $post_comm_count[$i] }} Comments</p>
+                        @endif
                     </div>
                 </div>
-            @endforeach
+            @endfor
         </div>
 
         {{-- Pagination --}}

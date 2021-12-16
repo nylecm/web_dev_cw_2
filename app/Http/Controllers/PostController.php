@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use DateTime;
 
 class PostController extends Controller
@@ -18,7 +20,17 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(12); // todo figure out sorting chronologically.
-        return view('posts.index', ['posts' => $posts]);
+        $posts_arr = Post::latest()->get();
+        $postAuthors = [];
+        $postCommentCount = [];
+
+        foreach ($posts_arr as $post) {
+            $author = User::where('id', $post->user_id)->first();
+            $postAuthors[] = $author->user_name;
+            $postCommentCount[] = Comment::where('post_id', $post->id)->get()->count();
+        }
+
+        return view('posts.index', ['posts' => $posts, 'post_authors' => $postAuthors, 'post_comm_count' => $postCommentCount]);
     }
 
     /**
