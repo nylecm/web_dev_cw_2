@@ -59,12 +59,12 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $user = auth()->user();
-        $profile = Profile::findOrFail($id);
-        if (!$profile->belongsTo($user))
+        $owner_id = User::where('profile_id', $id)->first()->id;
+        if (auth()->user()->id != $owner_id)
         {
-            return redirect()->route('users.show', ['id' => $user->id]);
+            return redirect()->route('users.show', ['id' => $owner_id]);
         }
+        $profile = Profile::findOrFail($id);
         return view('profiles.edit', ['profile' => $profile]);
     }
 
