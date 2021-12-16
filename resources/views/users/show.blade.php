@@ -20,6 +20,9 @@
                                style="font-size: 22px">
                     </form>
                 @endif
+                    <a href="{{ route('follows_users.show', ['id' => $user->id])}}" class="btn btn-info"
+                       role="button"
+                       style="font-size: 22px;margin-right: 8px;">Users they Follow</a>
             </div>
 
             @if ( auth()->user() != null && auth()->user()->id != $user->id)
