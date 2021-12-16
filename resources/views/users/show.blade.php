@@ -5,25 +5,43 @@
 @endsection
 
 @section('content')
-    <a href="{{ route('profiles.edit', ['id' => $user->profile_id])}}">Edit Profile</a>
+    {{--    @if ( auth()->user() != null && (auth()->user()->id == $user->id || auth()->user()->isAdmin))--}}
+    {{--        <a href="{{ route('profiles.edit', ['id' => $user->profile_id])}}" class="btn btn-info" role="button"--}}
+    {{--           style="font-size: 22px;margin-right: 8px">Edit Profile</a>--}}
 
-    <form method="POST" action="{{ route('profiles.updateFromTwitter', ['id' => $user->profile_id]) }}">
-        @csrf
-        <input type="hidden" name="id" value="{{ $user->id }}">
-        <input type="submit" class="btn btn-info" value="Get Bio From Twitter" style="margin-bottom: 20px">
-    </form>
+    {{--        <form method="POST" action="{{ route('profiles.updateFromTwitter', ['id' => $user->profile_id]) }}">--}}
+    {{--            @csrf--}}
+    {{--            <input type="hidden" name="id" value="{{ $user->id }}">--}}
+    {{--            <input type="submit" class="btn btn-info" value="Get Bio From Twitter" style="margin-bottom: 20px">--}}
+    {{--        </form>--}}
+    {{--    @endif--}}
 
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
-            @if ($profile->bio != null)
-                <p>
-                    Bio: {{ $profile->bio }}
-                </p>
-            @else
-                This user does not have a bio.
-            @endif
+{{--            <div class="d-flex justify-content-center" style="margin-bottom: 20px">--}}
+{{--                @if ($profile->bio != null)--}}
+{{--                    <p>Bio: {{ $profile->bio }}</p>--}}
+{{--                @else--}}
+{{--                    <p>This user does not have a bio.</p>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
-            @if ( auth()->user()->id != $user->id)
+            <div class="d-flex justify-content-center" style="margin-bottom: 20px">
+                @if ( auth()->user() != null && (auth()->user()->id == $user->id || auth()->user()->isAdmin))
+                    <a href="{{ route('profiles.edit', ['id' => $user->profile_id])}}" class="btn btn-info"
+                       role="button"
+                       style="font-size: 22px;margin-right: 8px;">Edit Profile</a>
+
+                    <form method="POST" action="{{ route('profiles.updateFromTwitter', ['id' => $user->profile_id]) }}">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+                        <input type="submit" class="btn btn-info" value="Get Bio From Twitter"
+                               style="font-size: 22px">
+                    </form>
+                @endif
+            </div>
+
+            @if ( auth()->user() != null && auth()->user()->id != $user->id)
                 @if( ! auth()->user()->isFollowing($user))
                     <form method="POST" action="{{ route('followers.store', ['following' => $user->id]) }}">
                         @csrf
@@ -47,21 +65,22 @@
         <div class="d-flex flex-column" id="profile_view">
             <div class="card">
                 <div class="card-body">
+                    <h3 class="card-header">{{ $user->full_name}}</h3>
                     <p class="card-text">
-                        {{ $user->full_name}}
-                        @if(auth()->user()->id === $user->id)
-                            , {{$user->email}}
-                            Date of Birth: {{$user->date_of_birth}}
+                        @if( auth()->user() != null && (auth()->user()->id == $user->id || auth()->user()->isAdmin))
+                            Email: {{$user->email}}<br>
+                            @if( $user->date_of_birth != null)
+                                Date of Birth: {{$user->date_of_birth}}
+                            @endif
                         @endif
                     </p>
-                    <li>Click here to see his/her posts:</li>
-                    <a href="{{route('users.index')}}">Cancel</a>
+                    @if ($profile->bio != null)
+                        <p class="card-text">Bio: {{ $profile->bio }}</p>
+                    @else
+                        <p class="card-text">This user does not have a bio.</p>
+                    @endif
                 </div>
             </div>
-            {{--todo if not following--}}
-
-
-            {{--todo else following show Unfollow button--}}
 
 
         </div>
