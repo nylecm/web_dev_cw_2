@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
+                    <a class="nav-link" href="{{ route('posts.index') }}">Quacks</a>
                 </li>
                 @if (auth()->user() != null)
                     <li class="nav-item">
@@ -41,21 +41,22 @@
                             Profile</a>
                     </li>
                 @endif
-                {{--todo admin--}}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Admin</a>
-                </li>
+
+                @if ( auth()->user() != null && auth()->user()->isAdmin)
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">You are an Administrator</a>
+                    </li>
+                @endif
+
                 @if ( Route::has('login'))
                     @auth
                         <li class="nav-item">
                             <a class="nav-link" href="">Hello {{ auth()->user()->user_name }}</a>
-                            <p></p>
                         </li>
                         <li class="nav-item">
-                            <form method="POST" action="/logout">
+                            <form method="POST" action="/logout" name="logout">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Log Out</button>
-
+                                <a class="nav-link" href="#" onclick="this.parentNode.submit();">Log Out</a>
                             </form>
                         </li>
                         {{--                                <li class="nav-item">--}}

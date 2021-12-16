@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentNotifierController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FollowUserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 // Service Container Routes
 
 app()->singleton(Twitter::class, function ($app) {
-    return new Twitter('FaV5Rij67hl2h3Agvk7ponaKl');
+    return new Twitter();
 });
 
 $twitter = app()->make(Twitter::class);
@@ -92,10 +93,12 @@ Route::get('/profiles/{id}/edit', [ProfileController::class, 'edit'])
 Route::post('/profiles/{id}', [ProfileController::class, 'update'])
     ->name('profiles.update');
 
+Route::post('/profiles-twitter-bio/{id}', [ProfileController::class, 'updateFromTwitter'])
+    ->name('profiles.updateFromTwitter');
+
 Route::get('/send-comment-notification', [CommentNotifierController::class, 'sendCommentNotification']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'showDashboard'])
+    ->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

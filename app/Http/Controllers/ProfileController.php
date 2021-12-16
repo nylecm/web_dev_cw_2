@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Services\Twitter;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -64,7 +66,16 @@ class ProfileController extends Controller
             return redirect()->route('users.show', ['id' => $user->id]);
         }
         return view('profiles.edit', ['profile' => $profile]);
+    }
 
+    public function updateFromTwitter($id, Twitter $twitter)
+    {
+        $profile = Profile::find($id);
+        $user = User::where('profile_id', $id)->first();
+        $profile->bio = $twitter->getBio($user->user_name);
+        $profile->save();
+
+        return redirect()->route('users.show', ['id' => $user->id]);
     }
 
     /**
@@ -86,7 +97,6 @@ class ProfileController extends Controller
         $profile->save();
 
         return redirect()->route('users.show', ['id' => auth()->user()->id]);
-
     }
 
     /**

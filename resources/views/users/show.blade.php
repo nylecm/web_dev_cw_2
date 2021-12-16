@@ -6,6 +6,13 @@
 
 @section('content')
     <a href="{{ route('profiles.edit', ['id' => $user->profile_id])}}">Edit Profile</a>
+
+    <form method="POST" action="{{ route('profiles.updateFromTwitter', ['id' => $user->profile_id]) }}">
+        @csrf
+        <input type="hidden" name="id" value="{{ $user->id }}">
+        <input type="submit" class="btn btn-info" value="Get Bio From Twitter" style="margin-bottom: 20px">
+    </form>
+
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
             @if ($profile->bio != null)
