@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\FollowsUsers;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +59,7 @@ class FollowUserController extends Controller
     {
         $user = User::findOrFail($id);
         $usersBeingFollowedByUser = $user->follows;
+
         return view('follows_users.show', ['user' => $user, 'followings' => $usersBeingFollowedByUser]);
     }
 
