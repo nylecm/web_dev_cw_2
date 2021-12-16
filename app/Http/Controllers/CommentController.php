@@ -61,9 +61,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        $user = auth()->user();
         $comment = Comment::findOrFail($id);
-        if (! ($comment->isTheOwner($user) || auth()->user()->isAdmin)) {
+        if (! ($comment->isTheOwner(auth()->user()) || auth()->user()->isAdmin)) {
             return redirect()->route('posts.index');
         }
         return view('comments.edit', ['comment' => $comment]);
@@ -101,9 +100,8 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        $user = auth()->user();
         $comment = Comment::find($id);
-        if (!$comment->isTheOwner($user))
+        if (! ($comment->isTheOwner(auth()->user()) || auth->user()->isAdmin))
         {
             return redirect()->route('posts.index');
         }

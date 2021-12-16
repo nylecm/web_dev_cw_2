@@ -99,9 +99,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $user = auth()->user();
         $post = Post::findOrFail($id);
-        if (!(auth()->user()->isAdmin || $post->isTheOwner($user))) {
+        if (!(auth()->user()->isAdmin || $post->isTheOwner(auth()->user()))) {
             return redirect()->route('posts.index');
         }
         return view('posts.edit', ['post' => $post]);
@@ -149,9 +148,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $user = auth()->user();
         $post = Post::find($id);
-        if (! (auth()->user()->isAdmin || $post->isTheOwner($user))) {
+        if (! (auth()->user()->isAdmin || $post->isTheOwner(auth()->user()))) {
             return redirect()->route('posts.index');
         }
 

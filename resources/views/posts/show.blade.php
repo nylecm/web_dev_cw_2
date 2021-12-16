@@ -39,7 +39,7 @@
                             href="{{ route('users.show', ['id' => $post->user_id]) }}">{{ "@" . $author->user_name}}</a>
                     </p>
 
-                    <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>
+{{--                    <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>--}}
                 </div>
             </div>
 
