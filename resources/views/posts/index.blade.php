@@ -11,7 +11,7 @@
 @endsection
 
 @section('title')
-    Posts
+    Quacks
 @endsection
 
 @section('content')

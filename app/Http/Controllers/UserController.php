@@ -53,8 +53,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $profile = $user->profile;
 
-        $posts = Post::latest()->where('user_id', auth()->user()->id)->paginate(12);
-        $postsArr = Post::latest()->where('user_id', auth()->user()->id)->get();
+        $posts = Post::latest()->where('user_id', $user->id)->paginate(12);
+        $postsArr = Post::latest()->where('user_id', $user->id)->get();
         $postCommentCount = [];
 
         foreach ($postsArr as $post) {

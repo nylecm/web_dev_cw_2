@@ -39,11 +39,11 @@
                             href="{{ route('users.show', ['id' => $post->user_id]) }}">{{ "@" . $author->user_name}}</a>
                     </p>
 
-{{--                    <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>--}}
+                    {{--                    <p>{{ sizeof($likes)}} 👍 {{ sizeof($dislikes)}} 👎</p>--}}
                 </div>
             </div>
 
-            @if( auth()->user()->isAdmin || auth()->user()->id == $post->user_id)
+            @if(auth()->user() != null && ( auth()->user()->isAdmin || auth()->user()->id == $post->user_id))
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-info" role="button"
                        style="font-size: 22px; margin-bottom: 20px; margin-top: 10px;margin-right: 8px">Edit this
@@ -61,31 +61,37 @@
             <h4>Comments:</h4>
 
             <div id="root">
-                <input type="text" id="input" class="form-control" placeholder="Enter your comment here:"
-                       v-model="newComment">
-                <button @click="createComment" class="btn btn-primary">Post Comment</button>
+                @if (auth()->user() != null)
+                    <input type="text" id="input" class="form-control" placeholder="Enter your comment here:"
+                           v-model="newComment">
+                    <button @click="createComment" class="btn btn-primary">Post Comment</button>
+                @endif
                 <div class="card" v-for="comment in comments">
                     <div class="card-body">
                         <p class="card-text">@{{ comment.text_content }}</p>
                     </div>
-                    <div class=" d-flex justify-content-left"
-                         v-if="({{ auth()->user()->id}} == comment.user_id) || {{ auth()->user()->isAdmin }}">
+                    @if (auth()->user() != null)
+                        <div class=" d-flex justify-content-left"
+                             v-if="({{ auth()->user()->id}} == comment.user_id || {{ auth()->user()->isAdmin }})">
 
-                        <a :href="'/comments/' + comment.id + '/edit'" class="btn btn-info"
-                           onclick="this.href=comment.id+'/edit';return false;"
-                           role="button"
-                           style="font-size: 11px; margin-bottom: 5px; margin-top: 10px; margin-left: 10px">Edit this
-                            Comment</a>
+                            <a :href="'/comments/' + comment.id + '/edit'" class="btn btn-info"
+                               onclick="this.href=comment.id+'/edit';return false;"
+                               role="button"
+                               style="font-size: 11px; margin-bottom: 5px; margin-top: 10px; margin-left: 10px">Edit
+                                this
+                                Comment</a>
 
 
-                        <form method="POST" :action="'/comments/'+comment.id">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
+                            <form method="POST" :action="'/comments/'+comment.id">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-info"
+                                        style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
