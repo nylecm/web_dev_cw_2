@@ -49,6 +49,9 @@
                 @endif
 
                 @if ( Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('posts.create')}}">Post a Quack</a>
+                    </li>
                     @auth
                         <li class="nav-item">
                             <a class="nav-link" href="">Hello {{ auth()->user()->user_name }}</a>
