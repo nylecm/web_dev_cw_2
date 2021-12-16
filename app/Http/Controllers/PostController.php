@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(12); // todo figure out sorting chronologically.
+        $posts = Post::latest()->paginate(12); // todo figure out sorting chronologically.
         return view('posts.index', ['posts' => $posts]);
     }
 
