@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -49,7 +52,15 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $profile = $user->profile;
-        return view('users.show', ['user' => $user, 'profile' => $profile]);
+
+        $posts = Post::latest()->where('user_id', auth()->user()->id)->paginate(12);
+        $postsArr = Post::latest()->where('user_id', auth()->user()->id)->get();
+        $postCommentCount = [];
+
+        foreach ($postsArr as $post) {
+            $postCommentCount[] = Comment::where('post_id', $post->id)->get()->count();
+        }
+        return view('users.show', ['user' => $user, 'profile' => $profile, 'posts' => $posts, 'post_comm_count' => $postCommentCount]);
     }
 
     /**
