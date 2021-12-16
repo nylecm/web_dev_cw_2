@@ -9,7 +9,7 @@
         @csrf
         <label>
             <textarea name="bio"
-                      style="width:250px;height:150px;resize:none;">{{ $profile->text_content}}</textarea>
+                      style="width:250px;height:150px;resize:none;">{{ $profile->bio}}</textarea>
         </label>
         <br>
         <input type="submit" value="Submit">
