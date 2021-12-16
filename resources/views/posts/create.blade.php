@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="container mt-5">
-
         <div class="d-flex flex-column" id="post_view">
             <div class="card">
                 <div class="card-body">
@@ -18,11 +17,9 @@
                         <br>
                         <input class="form-control" type="file" name="img">
                         <br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" class="btn btn-primary" value="Submit">
                     </form>
                 </div>
-
-
             </div>
         </div>
     </div>
