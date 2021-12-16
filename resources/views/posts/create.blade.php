@@ -8,6 +8,16 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">Write a post here:</h3>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
                         <p>Title: <input class="form-control" type="text" name="title"></p>

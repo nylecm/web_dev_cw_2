@@ -7,6 +7,15 @@
         <div class="d-flex flex-column" id="post_view">
             <div class="card">
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
                         @csrf
                         <p>Title: <input class="form-control" type="text" name="title" value="{{ $post->title}}"></p>
