@@ -64,7 +64,7 @@
                 @if (auth()->user() != null)
                     <input type="text" id="input" class="form-control" placeholder="Enter your comment here:"
                            v-model="newComment">
-                    <button @click="createComment" class="btn btn-primary">Post Comment</button>
+                    <button @click="createComment" class="btn btn-primary" style="margin-top: 10px;margin-bottom: 10px">Post Comment</button>
                 @endif
                 <div class="card" v-for="comment in comments">
                     <div class="card-body">
@@ -77,16 +77,13 @@
                             <a :href="'/comments/' + comment.id + '/edit'" class="btn btn-info"
                                onclick="this.href=comment.id+'/edit';return false;"
                                role="button"
-                               style="font-size: 11px; margin-bottom: 5px; margin-top: 10px; margin-left: 10px">Edit
-                                this
-                                Comment</a>
-
+                               style="margin-bottom: 7px; margin-top: 7px; margin-right: 10px;margin-left: 15px">Edit this Comment</a>
 
                             <form method="POST" :action="'/comments/'+comment.id">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-info"
-                                        style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">
+                                        style="margin-bottom: 7px; margin-top: 7px">
                                     Delete
                                 </button>
                             </form>
