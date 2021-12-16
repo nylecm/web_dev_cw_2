@@ -27,14 +27,14 @@
                     <form method="POST" action="{{ route('followers.store', ['following' => $user->id]) }}">
                         @csrf
                         <input type="hidden" name="id" value="{{ $user->id }}">
-                        <input type="submit" class="btn btn-info" value="Follow" style="margin-bottom: 20px">
+                        <input type="submit" class="btn btn-info" value="Follow" style="font-size:22px;margin-bottom: 20px">
                     </form>
                 @else
                     <form method="POST" action="{{ route('followers.destroy', ['id' => $user->id]) }}">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="id" value="{{ $user->id }}">
-                        <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px; margin-top: 10px">
+                        <button class="btn btn-info" style="font-size: 22px; margin-bottom: 20px">
                             Unfollow
                         </button>
                     </form>
@@ -49,9 +49,9 @@
                     <h3 class="card-header">{{ $user->full_name}}</h3>
                     <p class="card-text">
                         @if( auth()->user() != null && (auth()->user()->id == $user->id || auth()->user()->isAdmin))
-                            Email: {{$user->email}}<br>
+                            Email: {{ $user->email}}<br>
                             @if( $user->date_of_birth != null)
-                                Date of Birth: {{$user->date_of_birth}}
+                                Date of Birth: {{ $user->date_of_birth}}
                             @endif
                         @endif
                     </p>

@@ -71,6 +71,9 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])
 Route::post('/followers', [FollowUserController::class, 'store'])
     ->name('followers.store');
 
+Route::get('/follows_users/{id}', [FollowUserController::class, 'show'])
+    ->name('follows_users.show');
+
 Route::delete('/followers/{id}', [FollowUserController::class, 'destroy'])
     ->name('followers.destroy');
 
