@@ -9,8 +9,8 @@ class Twitter
     public function __construct()
     {
         $this->settings = array(
-            'consumer_key' => "FaV5Rij67hl2h3Agvk7ponaKl",
-            'consumer_secret' => "ilLmeEqEJEI5tvIcZdjrJfywz8arBr4qO0bGIBaprS9KurjzYl"
+            'consumer_key' => "abc",
+            'consumer_secret' => "def"
         );
     }
 
