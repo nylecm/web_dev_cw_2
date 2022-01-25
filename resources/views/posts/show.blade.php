@@ -11,7 +11,7 @@
         .card {
             margin-bottom: 7px;
         }
-    </style>
+9    </style>
 @endsection
 
 @section('title')
